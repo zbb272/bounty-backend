@@ -6,9 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create!(name: 'Luke', movie: movies.first)
 
+Application.delete_all;
 Bounty.delete_all;
 Project.delete_all;
 User.delete_all;
+
 
 
 project_manager1 = User.create(
@@ -51,8 +53,15 @@ bounty112 = Bounty.create(
   status: "open",
   amount: 700.00
 );
+
 project11.bounties << bounty111;
 project11.bounties << bounty112;
+
+application1111 = Application.create(
+  message: "first application",
+  user: project_manager2,
+  bounty: bounty111
+)
 
 project12 = Project.create(
   name: "project12",

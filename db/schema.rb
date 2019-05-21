@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190514162246) do
+ActiveRecord::Schema.define(version: 20190521152654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "applications", force: :cascade do |t|
+    t.string "message"
+    t.bigint "user_id"
+    t.bigint "bounty_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bounty_id"], name: "index_applications_on_bounty_id"
+    t.index ["user_id"], name: "index_applications_on_user_id"
+  end
 
   create_table "bounties", force: :cascade do |t|
     t.bigint "user_id"
@@ -73,6 +83,8 @@ ActiveRecord::Schema.define(version: 20190514162246) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "applications", "bounties"
+  add_foreign_key "applications", "users"
   add_foreign_key "bounties", "projects"
   add_foreign_key "bounties", "users"
   add_foreign_key "bounty_tags", "bounties"
