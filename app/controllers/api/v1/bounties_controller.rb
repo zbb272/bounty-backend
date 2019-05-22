@@ -25,7 +25,7 @@ class Api::V1::BountiesController < ApplicationController
   private
 
   def bounty_params
-    params.permit(:title, :description, :status, :amount)
+    params.permit(:title, :description, :status, :amount, :user_id)
   end
 
   def find_bounty

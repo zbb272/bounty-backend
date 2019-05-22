@@ -116,6 +116,24 @@ project21 = Project.create(
   progress: 25,
   github_url: "project21@github.com"
 );
+
+
+bounty221 = Bounty.create(
+  title: "bounty221",
+  description: "this a bounty",
+  status: "open",
+  amount: 600.00
+);
+bounty222 = Bounty.create(
+  title: "bounty222",
+  description: "this a bounty",
+  status: "open",
+  amount: 700.00
+);
+
+project21.bounties << bounty221;
+project21.bounties << bounty222;
+
 project22 = Project.create(
   name: "project22",
   description: "a really neato project",

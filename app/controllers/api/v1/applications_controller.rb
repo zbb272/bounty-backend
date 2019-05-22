@@ -25,7 +25,7 @@ class Api::V1::ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:message)
+    params.permit(:message, :user_id, :bounty_id)
   end
 
   def find_application
