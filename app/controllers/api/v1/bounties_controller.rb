@@ -17,8 +17,10 @@ class Api::V1::BountiesController < ApplicationController
   def create
     new_bounty = Bounty.new(bounty_params)
     tags = Tag.all.select do |tag|
-
-      bounty_params[:tags].to_i.include?(tag.id)
+      params[:newtag_ids].include?(tag.id)
+    end
+    tags.each do |tag|
+      new_bounty.tags << tag
     end
     new_bounty.save
     render json: new_bounty
@@ -31,7 +33,7 @@ class Api::V1::BountiesController < ApplicationController
   private
 
   def bounty_params
-    params.permit(:title, :description, :status, :amount, :user_id, :project_id, :tags)
+    params.permit(:title, :description, :status, :amount, :user_id, :project_id, :newtag_ids)
   end
 
   def find_bounty
