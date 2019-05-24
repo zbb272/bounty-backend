@@ -6,11 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create!(name: 'Luke', movie: movies.first)
 
+BountyTag.delete_all;
+UserTag.delete_all;
+Tag.delete_all;
 Application.delete_all;
 Bounty.delete_all;
 Project.delete_all;
 User.delete_all;
 
+
+Tag.create(name: "ruby");
+Tag.create(name: "python");
+Tag.create(name: "backend");
+Tag.create(name: "server");
+Tag.create(name: "rails");
+Tag.create(name: "node");
+Tag.create(name: "javascript");
+Tag.create(name: "java");
+Tag.create(name: "styling");
+Tag.create(name: "css");
+Tag.create(name: "c++");
+Tag.create(name: "django");
+Tag.create(name: "go");
+Tag.create(name: "react");
 
 
 project_manager1 = User.create(
@@ -41,12 +59,16 @@ project11 = Project.create(
   progress: 75,
   github_url: "project11@github.com"
 );
+
+frontendTag = Tag.create(name: "frontend")
+
 bounty111 = Bounty.create(
   title: "bounty111",
   description: "this a bounty",
   status: "open",
   amount: 600.00
 );
+bounty111.tags << frontendTag
 bounty112 = Bounty.create(
   title: "bounty112",
   description: "this a bounty",
