@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create!(name: 'Luke', movie: movies.first)
 
+Review.delete_all;
 BountyTag.delete_all;
 UserTag.delete_all;
 Tag.delete_all;
@@ -59,6 +60,12 @@ project11 = Project.create(
   progress: 75,
   github_url: "project11@github.com"
 );
+
+project_manager2.reviews << Review.create(
+  rating: 4,
+  message: "good",
+  project: project11,
+)
 
 frontendTag = Tag.create(name: "frontend")
 

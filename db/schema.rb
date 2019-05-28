@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190521152654) do
+ActiveRecord::Schema.define(version: 20190528130541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(version: 20190521152654) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "message"
+    t.bigint "user_id"
+    t.bigint "bounty_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bounty_id"], name: "index_reviews_on_bounty_id"
+    t.index ["project_id"], name: "index_reviews_on_project_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -90,6 +103,9 @@ ActiveRecord::Schema.define(version: 20190521152654) do
   add_foreign_key "bounty_tags", "bounties"
   add_foreign_key "bounty_tags", "tags"
   add_foreign_key "projects", "users"
+  add_foreign_key "reviews", "bounties"
+  add_foreign_key "reviews", "projects"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_tags", "tags"
   add_foreign_key "user_tags", "users"
 end
