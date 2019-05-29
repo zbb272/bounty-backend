@@ -28,7 +28,21 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    render json: User.create(user_params)
+    @user = User.new(user_params)
+
+    tags = Tag.all.select do |tag|
+      params[:newtag_ids].include?(tag.id)
+    end
+
+    tags.each do |tag|
+      @user.tags << tag
+    end
+
+    if @user.save
+      render json: @user, status: :accepted
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def show
