@@ -30,6 +30,12 @@ Tag.create(name: "c++");
 Tag.create(name: "django");
 Tag.create(name: "go");
 Tag.create(name: "react");
+Tag.create(name: "angular");
+Tag.create(name: "full stack");
+Tag.create(name: "php");
+Tag.create(name: "devops");
+Tag.create(name: "android");
+Tag.create(name: "scala");
 
 
 project_manager1 = User.create(

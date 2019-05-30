@@ -15,9 +15,11 @@ class Api::V1::UsersController < ApplicationController
     tags.each do |tag|
       @user.tags << tag
     end
-
-    # @user_tag = UserTag.find(user_id: @user.id, tag_id: user_params[:delete_tag_id])
     #
+    # @user_tag = UserTag.find(user_id: @user.id, tag_id: params[:deletetag])
+    # puts "--------------"
+    # puts @user_tag
+    # puts "--------------"
     # @user_tag.destroy
 
     if @user.save
@@ -52,7 +54,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:id, :username, :password_digest, :description, :email, :github_url, :newtag_ids, :delete_tag_id)
+    params.permit(:id, :username, :password_digest, :description, :email, :github_url, :newtag_ids, :deletetag)
   end
 
   def find_user
